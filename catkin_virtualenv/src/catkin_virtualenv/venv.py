@@ -60,8 +60,8 @@ class Virtualenv:
             raise RuntimeError(error_msg)
 
         preinstall = [
-            "pip==20.1",
-            "pip-tools==5.1.2",
+            "pip",
+            "pip-tools",
         ]
 
         builtin_venv = self._check_module(system_python, "venv")
@@ -71,7 +71,7 @@ class Virtualenv:
             virtualenv = ["virtualenv", "--no-setuptools", "--verbose", "--python", python]
             # py2's virtualenv command will try install latest setuptools. setuptools>=45 not compatible with py2,
             # but we do require a reasonably up-to-date version (because of pip==20.1), so v44 at least.
-            preinstall += ["setuptools>=44,<45"]
+            preinstall += ["setuptools"]
 
         if use_system_packages:
             virtualenv.append("--system-site-packages")
